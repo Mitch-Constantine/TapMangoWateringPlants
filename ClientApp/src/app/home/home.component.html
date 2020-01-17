@@ -1,5 +1,9 @@
 <div *ngFor="let plant of plants; let i = index">
-  <span class="plant.name">Plant 1</span>
-  <button (click)="setWateringStatus(i, true)" *ngIf="!plant.isWateringNow">Start Watering</button>
-  <button (click)="setWateringStatus(i, false)" *ngIf="plant.isWateringNow">Stop Watering</button>
+  <input type="checkbox" [(ngModel)]="plant.isSelected"/>
+  <label [ngClass]="{ 'plantName' : true, 'highlighted': !plant.wateredRecently }">{{plant.name}} ({{getStatusDescription(plant)}})</label>
+  <button (click)="startWatering(i)" *ngIf="!plant.isWateringNow">Start Watering</button>
+  <button (click)="stopWatering(i)" *ngIf="plant.isWateringNow">Stop Watering</button>
 </div>
+<button (click)="startWateringSelected()" *ngIf="displayWaterSelected()">Start Watering Selected</button>
+<button (click)="stopWateringSelected()" *ngIf="displayStopWateringSelected()">Stop Watering Selected</button>
+
