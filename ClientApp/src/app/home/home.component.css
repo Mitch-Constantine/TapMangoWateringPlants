@@ -6,3 +6,25 @@
 .highlighted {
   color:red;
 }
+
+div.container {
+  margin-top: 100px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.container form {
+  margin-bottom: 20px;
+}
+
+.container form > * {
+  margin: 5px 0;
+}
+

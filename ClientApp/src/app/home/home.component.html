@@ -1,9 +1,13 @@
-<div *ngFor="let plant of plants; let i = index">
-  <input type="checkbox" [(ngModel)]="plant.isSelected"/>
-  <label [ngClass]="{ 'plantName' : true, 'highlighted': !plant.wateredRecently }">{{plant.name}} ({{getStatusDescription(plant)}})</label>
-  <button (click)="startWatering(i)" *ngIf="!plant.isWateringNow">Start Watering</button>
-  <button (click)="stopWatering(i)" *ngIf="plant.isWateringNow">Stop Watering</button>
+<div class="container">
+  <form class="container">
+    <div *ngFor="let plant of plants; let i = index">
+      <mat-checkbox [(ngModel)]="plant.isSelected" name="selection" [ngClass]="{ 'plantName' : true, 'highlighted': !plant.wateredRecently }">
+        {{plant.name}} ({{getStatusDescription(plant)}})
+      </mat-checkbox>
+      <button mat-raised-button (click)="startWatering(i)" *ngIf="!plant.isWateringNow">Start Watering</button>
+      <button mat-raised-button (click)="stopWatering(i)" *ngIf="plant.isWateringNow">Stop Watering</button>
+    </div>
+    <button mat-raised-button (click)="startWateringSelected()" *ngIf="displayWaterSelected()">Start Watering Selected</button>
+    <button mat-raised-button (click)="stopWateringSelected()" *ngIf="displayStopWateringSelected()">Stop Watering Selected</button>
+  </form>
 </div>
-<button (click)="startWateringSelected()" *ngIf="displayWaterSelected()">Start Watering Selected</button>
-<button (click)="stopWateringSelected()" *ngIf="displayStopWateringSelected()">Stop Watering Selected</button>
-
